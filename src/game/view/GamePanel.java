@@ -10,6 +10,7 @@ public class GamePanel extends JPanel
 		private SpringLayout baseLayout;
 		private MainMenu mainMenuPanel;
 		private OptionsMenu optionsMenuPanel;
+		private JLabel logoImage;
 		private JLabel backgroundImage;
 
 		public GamePanel(GameController baseController)
@@ -18,11 +19,11 @@ public class GamePanel extends JPanel
 				mainMenuPanel = new MainMenu(baseController);
 				optionsMenuPanel = new OptionsMenu(baseController);
 				
-				backgroundImage = new JLabel(new ImageIcon(GamePanel.class.getResource("/colorwave.gif")));
-
+				logoImage = new JLabel(new ImageIcon(GamePanel.class.getResource("/logo.png")));
+				backgroundImage = new JLabel();
+				
 				buildPanel();
 				buildWindow();
-				buildListeners();
 			}
 
 		private void buildPanel()
@@ -30,7 +31,17 @@ public class GamePanel extends JPanel
 				setLayout(baseLayout);
 				add(mainMenuPanel);
 				add(optionsMenuPanel);
+				add(logoImage);
 				add(backgroundImage);
+			}
+
+		public void updateBackgroundImage(int x, int y)
+			{
+				ImageIcon imageIcon = new ImageIcon("resources/colorwave.gif"); // load the image to a imageIcon
+				Image image = imageIcon.getImage(); // transform it
+				Image newimg = image.getScaledInstance(x, y, java.awt.Image.SCALE_FAST); // scale it the smooth way
+				imageIcon = new ImageIcon(newimg); // transform it back
+				backgroundImage.setIcon(imageIcon);
 			}
 
 		private void buildWindow()
@@ -49,20 +60,6 @@ public class GamePanel extends JPanel
 				baseLayout.putConstraint(SpringLayout.EAST, optionsMenuPanel, 0, SpringLayout.EAST, this);
 			}
 
-		private void buildListeners()
-			{
-
-			}
-
-		public void updateBackgroundImage(int x, int y)
-			{
-				ImageIcon imageIcon = new ImageIcon("resources/colorwave.gif"); // load the image to a imageIcon
-				Image image = imageIcon.getImage(); // transform it
-				Image newimg = image.getScaledInstance(x, y, java.awt.Image.SCALE_FAST); // scale it the smooth way
-				imageIcon = new ImageIcon(newimg); // transform it back
-				backgroundImage = new JLabel(new ImageIcon(GamePanel.class.getResource("/colorwave.gif")));
-			}
-		
 		public MainMenu getMainMenuPanel()
 			{
 				return mainMenuPanel;

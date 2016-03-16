@@ -16,15 +16,16 @@ public class GameFrame extends JFrame
 		private void buildFrame()
 		{
 			this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-			this.setSize(1280,800);
-			this.setResizable(false);
-			this.setTitle("Pixels");
+			this.setUndecorated(true);
+			this.setExtendedState(JFrame.MAXIMIZED_BOTH);
 			this.setContentPane(basePanel);
 			this.setVisible(true);
+			basePanel.updateBackgroundImage(this.getWidth(), this.getHeight());
 		}
 		
 		public GamePanel getPanel()
 		{
 			return basePanel;
 		}
+		
 	}
