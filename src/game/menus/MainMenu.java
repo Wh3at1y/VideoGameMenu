@@ -20,6 +20,7 @@ public class MainMenu extends JPanel
 				loadLabel = new JLabel("Load Profile");
 				optionsLabel = new JLabel("Options");
 				exitLabel = new JLabel("Quit Game");
+				optionsLabel.setName("options");
 
 				baseController.buildButton(startLabel);
 				baseController.buildButton(loadLabel);

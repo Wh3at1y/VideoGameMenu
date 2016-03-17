@@ -8,6 +8,7 @@ public class ButtonController
 		public ButtonController(GameController baseController)
 			{
 				this.baseController = baseController;
+				this.isMainMenuShowing = true;
 			}
 
 		public void startButtonOperation()
@@ -24,12 +25,14 @@ public class ButtonController
 			{
 				if (isMainMenuShowing)
 					{
+						
 						baseController.getFrame().getPanel().getMainMenuPanel().setVisible(false);
 						baseController.getFrame().getPanel().getOptionsMenuPanel().setVisible(true);
 						isMainMenuShowing = false;
 					}
 				else
 					{
+					
 						baseController.getFrame().getPanel().getMainMenuPanel().setVisible(true);
 						baseController.getFrame().getPanel().getOptionsMenuPanel().setVisible(false);
 						isMainMenuShowing = true;

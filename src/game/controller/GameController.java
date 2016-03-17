@@ -19,9 +19,11 @@ public class GameController
 		public GameController()
 			{
 				new JFXPanel();
+				playSounds("/resources/song.wav");
 				baseFrame = new GameFrame(this);
 				buttonController = new ButtonController(this);
-				playSounds("/song.wav");
+				
+				
 			}
 
 		public void playSounds(String location)
@@ -49,14 +51,15 @@ public class GameController
 			{
 				button.addMouseListener(new MouseListener()
 					{
-						public void mouseClicked(MouseEvent e)
+						public void mouseClicked(MouseEvent clicked)
 							{
+								if (button == getMainMenuPanel().getOptionsLabel() || button == getOptionsPanel().getBackLabel()) // Options and Back Button
+									buttonController.optionsButtonOperation(); // Load the options operations
 								if (button == getMainMenuPanel().getStartLabel()) // Start Button
 									buttonController.startButtonOperation(); // Load start button operations
 								if (button == getMainMenuPanel().getLoadLabel()) // Load Button
 									buttonController.loadButtonOperation(); // Load the load game operations
-								if (button == getMainMenuPanel().getOptionsLabel() || button == getOptionsPanel().getBackLabel()) // Options and Back Button
-									buttonController.optionsButtonOperation(); // Load the options operations
+								
 								if (button == getMainMenuPanel().getExitLabel()) // Exit Button
 									buttonController.exitButtonOperation(); // Load the exit button operations
 

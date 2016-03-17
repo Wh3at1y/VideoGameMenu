@@ -19,7 +19,7 @@ public class GamePanel extends JPanel
 				mainMenuPanel = new MainMenu(baseController);
 				optionsMenuPanel = new OptionsMenu(baseController);
 				
-				logoImage = new JLabel(new ImageIcon(GamePanel.class.getResource("/logo.png")));
+				logoImage = new JLabel(new ImageIcon(GamePanel.class.getResource("/resources/logo.png")));
 				backgroundImage = new JLabel();
 				
 				buildPanel();
@@ -37,7 +37,7 @@ public class GamePanel extends JPanel
 
 		public void updateBackgroundImage(int x, int y)
 			{
-				ImageIcon imageIcon = new ImageIcon("resources/colorwave.gif"); // load the image to a imageIcon
+				ImageIcon imageIcon = new ImageIcon(GamePanel.class.getResource("/resources/colorwave.gif")); // load the image to a imageIcon
 				Image image = imageIcon.getImage(); // transform it
 				Image newimg = image.getScaledInstance(x, y, java.awt.Image.SCALE_FAST); // scale it the smooth way
 				imageIcon = new ImageIcon(newimg); // transform it back
@@ -58,6 +58,8 @@ public class GamePanel extends JPanel
 				baseLayout.putConstraint(SpringLayout.WEST, optionsMenuPanel, 0, SpringLayout.WEST, this);
 				baseLayout.putConstraint(SpringLayout.SOUTH, optionsMenuPanel, 0, SpringLayout.SOUTH, this);
 				baseLayout.putConstraint(SpringLayout.EAST, optionsMenuPanel, 0, SpringLayout.EAST, this);
+				baseLayout.putConstraint(SpringLayout.NORTH, logoImage, 40, SpringLayout.NORTH, this);
+				baseLayout.putConstraint(SpringLayout.WEST, logoImage, 85, SpringLayout.WEST, this);
 			}
 
 		public MainMenu getMainMenuPanel()
