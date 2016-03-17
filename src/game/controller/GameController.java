@@ -2,46 +2,39 @@ package game.controller;
 
 import java.awt.*;
 import java.awt.event.*;
-import java.io.File;
-import javax.sound.sampled.AudioInputStream;
-import javax.sound.sampled.AudioSystem;
-import javax.sound.sampled.Clip;
+import java.net.URL;
+
 import javax.swing.JLabel;
 import game.menus.MainMenu;
 import game.menus.OptionsMenu;
 import game.view.GameFrame;
+import javafx.embed.swing.JFXPanel;
+import javafx.scene.media.*;
 
 public class GameController
 	{
 		private GameFrame baseFrame;
 		private ButtonController buttonController;
-		private int screenSize;
 
 		public GameController()
 			{
+				new JFXPanel();
 				baseFrame = new GameFrame(this);
 				buttonController = new ButtonController(this);
+				playSounds("/song.wav");
 			}
 
-		public void start()
+		public void playSounds(String location)
 			{
-				try
-					{
-						AudioInputStream audioInputStream = AudioSystem.getAudioInputStream(new File("resources/song.wav").getAbsoluteFile());
-						Clip musicClip = AudioSystem.getClip();
-						musicClip.open(audioInputStream);
-						musicClip.start();
-					}
-				catch (Exception error)
-					{
-						System.out.println("Error with playing sound.");
-						error.printStackTrace();
-					}
+				URL resource = getClass().getResource(location);
+				Media media = new Media(resource.toString());
+				MediaPlayer mediaPlayer = new MediaPlayer(media);
+				mediaPlayer.play();
 			}
 
 		public void buildButton(JLabel button)
 			{
-				button.setFont(new Font("Microsoft Yi Baiti", Font.PLAIN, 30));
+				button.setFont(new Font("Microsoft Yi Baiti", Font.PLAIN, 35));
 				button.setEnabled(false);
 				button.setForeground(Color.WHITE);
 				mainButtonListeners(button);
@@ -111,10 +104,5 @@ public class GameController
 		public OptionsMenu getOptionsPanel()
 			{
 				return baseFrame.getPanel().getOptionsMenuPanel();
-			}
-
-		public int getScreenSize()
-			{
-				return screenSize;
 			}
 	}

@@ -6,7 +6,7 @@ import javax.swing.JFrame;
 public class GameFrame extends JFrame
 	{
 		private GamePanel basePanel;
-		
+	
 		public GameFrame(GameController baseController)
 		{
 			basePanel = new GamePanel(baseController);

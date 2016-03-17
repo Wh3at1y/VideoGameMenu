@@ -1,6 +1,7 @@
 package game.menus;
 
 import game.controller.GameController;
+
 import javax.swing.*;
 
 public class MainMenu extends JPanel
@@ -41,14 +42,14 @@ public class MainMenu extends JPanel
 
 		private void buildWindow()
 			{
-				baseLayout.putConstraint(SpringLayout.NORTH, startLabel, 150, SpringLayout.NORTH, this);
+				baseLayout.putConstraint(SpringLayout.NORTH, startLabel, 200, SpringLayout.NORTH, this);
 				baseLayout.putConstraint(SpringLayout.NORTH, exitLabel, 50, SpringLayout.NORTH, optionsLabel);
-				baseLayout.putConstraint(SpringLayout.WEST, exitLabel, 75, SpringLayout.WEST, this);
-				baseLayout.putConstraint(SpringLayout.WEST, loadLabel, 75, SpringLayout.WEST, this);
+				baseLayout.putConstraint(SpringLayout.WEST, exitLabel, 150, SpringLayout.WEST, this);
+				baseLayout.putConstraint(SpringLayout.WEST, loadLabel, 150, SpringLayout.WEST, this);
 				baseLayout.putConstraint(SpringLayout.NORTH, optionsLabel, 50, SpringLayout.NORTH, loadLabel);
 				baseLayout.putConstraint(SpringLayout.NORTH, loadLabel, 50, SpringLayout.NORTH, startLabel);
-				baseLayout.putConstraint(SpringLayout.WEST, optionsLabel, 75, SpringLayout.WEST, this);
-				baseLayout.putConstraint(SpringLayout.WEST, startLabel, 75, SpringLayout.WEST, this);
+				baseLayout.putConstraint(SpringLayout.WEST, optionsLabel, 150, SpringLayout.WEST, this);
+				baseLayout.putConstraint(SpringLayout.WEST, startLabel, 150, SpringLayout.WEST, this);
 			}
 
 		public JLabel getStartLabel()
