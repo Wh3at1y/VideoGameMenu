@@ -14,8 +14,8 @@ public class OptionsMenu extends JPanel
 			{
 				baseLayout = new SpringLayout();
 
-				toggleMusicLabel = new JLabel("Toggle Music : ");
-				toggleClicksLabel = new JLabel("Toggle Button Sounds : ");
+				toggleMusicLabel = new JLabel("Toggle Music : On");
+				toggleClicksLabel = new JLabel("Toggle Button Sounds : On");
 				backLabel = new JLabel("Back");
 
 				baseController.buildButton(toggleMusicLabel);
@@ -35,7 +35,7 @@ public class OptionsMenu extends JPanel
 				add(toggleClicksLabel);
 				add(backLabel);
 			}
-
+		
 		private void buildWindow()
 			{
 				baseLayout.putConstraint(SpringLayout.WEST, backLabel, 150, SpringLayout.WEST, this);

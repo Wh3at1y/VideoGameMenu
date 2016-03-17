@@ -4,11 +4,13 @@ public class ButtonController
 	{
 		private GameController baseController;
 		private boolean isMainMenuShowing;
+		private boolean isMusicPlaying;
 
 		public ButtonController(GameController baseController)
 			{
 				this.baseController = baseController;
 				this.isMainMenuShowing = true;
+				this.isMusicPlaying = true;
 			}
 
 		public void startButtonOperation()
@@ -25,19 +27,31 @@ public class ButtonController
 			{
 				if (isMainMenuShowing)
 					{
-						
-						baseController.getFrame().getPanel().getMainMenuPanel().setVisible(false);
-						baseController.getFrame().getPanel().getOptionsMenuPanel().setVisible(true);
+						baseController.getMainMenuPanel().setVisible(false);
+						baseController.getOptionsPanel().setVisible(true);
 						isMainMenuShowing = false;
 					}
 				else
 					{
-					
-						baseController.getFrame().getPanel().getMainMenuPanel().setVisible(true);
-						baseController.getFrame().getPanel().getOptionsMenuPanel().setVisible(false);
+						baseController.getMainMenuPanel().setVisible(true);
+						baseController.getOptionsPanel().setVisible(false);
 						isMainMenuShowing = true;
 					}
 			}
+		
+		public void toggleMusicOperation()
+		{
+			if(isMusicPlaying)
+				{
+					baseController.musicStatus(false);
+					isMusicPlaying = false;
+				}
+			else
+				{
+					baseController.musicStatus(true);
+					isMusicPlaying = true;
+				}
+		}
 		
 		public void exitButtonOperation()
 			{

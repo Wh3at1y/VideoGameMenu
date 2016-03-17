@@ -3,7 +3,6 @@ package game.controller;
 import java.awt.*;
 import java.awt.event.*;
 import java.net.URL;
-
 import javax.swing.JLabel;
 import game.menus.MainMenu;
 import game.menus.OptionsMenu;
@@ -11,10 +10,11 @@ import game.view.GameFrame;
 import javafx.embed.swing.JFXPanel;
 import javafx.scene.media.*;
 
-public class GameController
+public class GameController implements Runnable
 	{
 		private GameFrame baseFrame;
 		private ButtonController buttonController;
+		private MediaPlayer mediaPlayer;
 
 		public GameController()
 			{
@@ -22,16 +22,30 @@ public class GameController
 				playSounds("/resources/song.wav");
 				baseFrame = new GameFrame(this);
 				buttonController = new ButtonController(this);
-				
-				
 			}
 
 		public void playSounds(String location)
 			{
 				URL resource = getClass().getResource(location);
 				Media media = new Media(resource.toString());
-				MediaPlayer mediaPlayer = new MediaPlayer(media);
+				mediaPlayer = new MediaPlayer(media);
+				mediaPlayer.pause();
+				mediaPlayer.setOnRepeat(this);
 				mediaPlayer.play();
+			}
+
+		public void musicStatus(boolean isPlaying)
+			{
+				if (isPlaying)
+					{
+						mediaPlayer.play();
+						getOptionsPanel().getToggleMusicLabel().setText("Toggle Music : On");
+					}
+				else
+					{
+						mediaPlayer.pause();
+						getOptionsPanel().getToggleMusicLabel().setText("Toggle Music : Off");
+					}
 			}
 
 		public void buildButton(JLabel button)
@@ -59,14 +73,15 @@ public class GameController
 									buttonController.startButtonOperation(); // Load start button operations
 								if (button == getMainMenuPanel().getLoadLabel()) // Load Button
 									buttonController.loadButtonOperation(); // Load the load game operations
-								
 								if (button == getMainMenuPanel().getExitLabel()) // Exit Button
 									buttonController.exitButtonOperation(); // Load the exit button operations
+								if (button == getOptionsPanel().getToggleMusicLabel())
+									buttonController.toggleMusicOperation();
 
 								/**
 								 * ------------- Options Menu Listeners
 								 */
-								
+
 							}
 
 						public void mousePressed(MouseEvent e)
@@ -94,11 +109,6 @@ public class GameController
 		/*
 		 * --------Getters
 		 */
-		public GameFrame getFrame()
-			{
-				return baseFrame;
-			}
-
 		public MainMenu getMainMenuPanel()
 			{
 				return baseFrame.getPanel().getMainMenuPanel();
@@ -107,5 +117,11 @@ public class GameController
 		public OptionsMenu getOptionsPanel()
 			{
 				return baseFrame.getPanel().getOptionsMenuPanel();
+			}
+
+		@Override
+		public void run()
+			{
+				
 			}
 	}
