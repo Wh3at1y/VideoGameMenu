@@ -10,40 +10,31 @@ import game.view.GameFrame;
 import javafx.embed.swing.JFXPanel;
 import javafx.scene.media.*;
 
-public class GameController implements Runnable
+public class GameController
 	{
 		private GameFrame baseFrame;
 		private ButtonController buttonController;
-		private MediaPlayer mediaPlayer;
+		private MusicController playSound;
 
 		public GameController()
 			{
 				new JFXPanel();
-				playSounds("/resources/song.wav");
 				baseFrame = new GameFrame(this);
 				buttonController = new ButtonController(this);
-			}
-
-		public void playSounds(String location)
-			{
-				URL resource = getClass().getResource(location);
-				Media media = new Media(resource.toString());
-				mediaPlayer = new MediaPlayer(media);
-				mediaPlayer.pause();
-				mediaPlayer.setOnRepeat(this);
-				mediaPlayer.play();
+				playSound = new MusicController();
+				playSound.menuSong();
 			}
 
 		public void musicStatus(boolean isPlaying)
 			{
 				if (isPlaying)
 					{
-						mediaPlayer.play();
+						playSound.getMainMenuPlayer().play();
 						getOptionsPanel().getToggleMusicLabel().setText("Toggle Music : On");
 					}
 				else
 					{
-						mediaPlayer.pause();
+						playSound.getMainMenuPlayer().pause();
 						getOptionsPanel().getToggleMusicLabel().setText("Toggle Music : Off");
 					}
 			}
@@ -67,6 +58,12 @@ public class GameController implements Runnable
 					{
 						public void mouseClicked(MouseEvent clicked)
 							{
+
+							}
+
+						public void mousePressed(MouseEvent e)
+							{
+								playSound.buttonClick();
 								if (button == getMainMenuPanel().getOptionsLabel() || button == getOptionsPanel().getBackLabel()) // Options and Back Button
 									buttonController.optionsButtonOperation(); // Load the options operations
 								if (button == getMainMenuPanel().getStartLabel()) // Start Button
@@ -77,16 +74,10 @@ public class GameController implements Runnable
 									buttonController.exitButtonOperation(); // Load the exit button operations
 								if (button == getOptionsPanel().getToggleMusicLabel())
 									buttonController.toggleMusicOperation();
-
+								
 								/**
 								 * ------------- Options Menu Listeners
 								 */
-
-							}
-
-						public void mousePressed(MouseEvent e)
-							{
-
 							}
 
 						public void mouseReleased(MouseEvent e)
@@ -96,6 +87,7 @@ public class GameController implements Runnable
 
 						public void mouseEntered(MouseEvent e)
 							{
+								playSound.buttonHover();
 								button.setEnabled(true);
 							}
 
@@ -117,11 +109,5 @@ public class GameController implements Runnable
 		public OptionsMenu getOptionsPanel()
 			{
 				return baseFrame.getPanel().getOptionsMenuPanel();
-			}
-
-		@Override
-		public void run()
-			{
-				
 			}
 	}
