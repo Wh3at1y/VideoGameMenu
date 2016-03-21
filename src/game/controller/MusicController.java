@@ -12,6 +12,7 @@ public class MusicController
 		private MediaPlayer buttonHoverPlayer;
 
 		private boolean isButtonClicksOn;
+		private boolean isMenuSongPlaying;
 
 		public MusicController(GameController baseController)
 			{
@@ -19,17 +20,19 @@ public class MusicController
 				this.isButtonClicksOn = true;
 			}
 
-		public void menuMusicStatus(boolean isPlaying)
+		public void menuMusicStatus()
 			{
-				if (isPlaying)
+				if (isMenuSongPlaying)
 					{
 						mainMenuPlayer.play();
 						baseController.getOptionsPanel().getToggleMusicLabel().setText("Toggle Music : On");
+						isMenuSongPlaying = false;
 					}
 				else
 					{
 						mainMenuPlayer.pause();
 						baseController.getOptionsPanel().getToggleMusicLabel().setText("Toggle Music : Off");
+						isMenuSongPlaying = true;
 					}
 			}
 
@@ -76,20 +79,5 @@ public class MusicController
 		public boolean getButtonClicks()
 			{
 				return this.isButtonClicksOn;
-			}
-
-		public MediaPlayer getButtonClickPlayer()
-			{
-				return buttonClickPlayer;
-			}
-
-		public MediaPlayer getButtonHoverPlayer()
-			{
-				return buttonHoverPlayer;
-			}
-
-		public MediaPlayer getMainMenuPlayer()
-			{
-				return mainMenuPlayer;
 			}
 	}

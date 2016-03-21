@@ -20,7 +20,7 @@ public class GameFrame extends JFrame
 			this.setExtendedState(JFrame.MAXIMIZED_BOTH);
 			this.setContentPane(basePanel);
 			this.setVisible(true);
-			basePanel.updateBackgroundImage(this.getWidth(), this.getHeight());
+			this.basePanel.updateBackgroundImage(this.getWidth(), this.getHeight());
 		}
 		
 		public GamePanel getPanel()

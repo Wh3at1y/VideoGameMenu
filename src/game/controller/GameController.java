@@ -2,13 +2,10 @@ package game.controller;
 
 import java.awt.*;
 import java.awt.event.*;
-import java.net.URL;
 import javax.swing.JLabel;
-import game.menus.MainMenu;
-import game.menus.OptionsMenu;
+import game.menus.*;
 import game.view.GameFrame;
 import javafx.embed.swing.JFXPanel;
-import javafx.scene.media.*;
 
 public class GameController
 	{
@@ -18,11 +15,11 @@ public class GameController
 
 		public GameController()
 			{
-				new JFXPanel();
+				new JFXPanel();	//Starts JFXPanel for MP3 Audio
 				baseFrame = new GameFrame(this);
 				buttonController = new ButtonController(this);
 				playSound = new MusicController(this);
-				playSound.menuSong();
+				playSound.menuSong();	//Starts the MainMenu song
 			}
 
 		public void buildButton(JLabel button)
@@ -30,13 +27,13 @@ public class GameController
 				button.setFont(new Font("Microsoft Yi Baiti", Font.PLAIN, 35));
 				button.setEnabled(false);
 				button.setForeground(Color.WHITE);
-				mainButtonListeners(button);
+				mainButtonListeners(button);	//passes the button into the listener
 			}
 
 		/**
-		 * 
 		 * @param button
 		 *            : The button the user clicks on
+		 *            Makes listeners for all the buttons that call for it
 		 */
 		public void mainButtonListeners(JLabel button)
 			{
@@ -49,8 +46,8 @@ public class GameController
 
 						public void mousePressed(MouseEvent e)
 							{
-								if (playSound.getButtonClicks() == true)
-									playSound.buttonClick();
+								if (playSound.getButtonClicks() == true)	//Checks the toggle clicks status
+									playSound.buttonClick();	//Plays the sound
 								if (button == getMainMenuPanel().getOptionsLabel() || button == getOptionsPanel().getBackLabel()) // Options and Back Button
 									buttonController.optionsButtonOperation(); // Load the options operations
 								if (button == getMainMenuPanel().getStartLabel()) // Start Button
@@ -59,14 +56,19 @@ public class GameController
 									buttonController.loadButtonOperation(); // Load the load game operations
 								if (button == getMainMenuPanel().getExitLabel()) // Exit Button
 									buttonController.exitButtonOperation(); // Load the exit button operations
-								if (button == getOptionsPanel().getToggleMusicLabel())
-									buttonController.toggleMenuMusic();
-								if (button == getOptionsPanel().getToggleClicksLabel())
-									playSound.buttonClickStatus();
 
+								/**
+								 * ------------- Load Menu Listeners
+								 */
+								if(button == getMainMenuPanel().getLoadLabel())
+									baseFrame.getPanel().getLoadMenu().showFileChooser();
 								/**
 								 * ------------- Options Menu Listeners
 								 */
+								if (button == getOptionsPanel().getToggleMusicLabel())	//Toggle Music Button
+									playSound.menuMusicStatus();	//Toggles the sound
+								if (button == getOptionsPanel().getToggleClicksLabel())	//Toggle Button click sounds
+									playSound.buttonClickStatus();	//Toggles the sound
 							}
 
 						public void mouseReleased(MouseEvent e)

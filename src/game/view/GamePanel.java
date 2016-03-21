@@ -9,6 +9,7 @@ public class GamePanel extends JPanel
 	{
 		private SpringLayout baseLayout;
 		private MainMenu mainMenuPanel;
+		private LoadMenu loadMenuPanel;
 		private OptionsMenu optionsMenuPanel;
 		private JLabel logoImage;
 		private JLabel backgroundImage;
@@ -17,6 +18,7 @@ public class GamePanel extends JPanel
 			{
 				baseLayout = new SpringLayout();
 				mainMenuPanel = new MainMenu(baseController);
+				loadMenuPanel = new LoadMenu(baseController);
 				optionsMenuPanel = new OptionsMenu(baseController);
 				
 				logoImage = new JLabel(new ImageIcon(GamePanel.class.getResource("/resources/logo.png")));
@@ -62,6 +64,10 @@ public class GamePanel extends JPanel
 				baseLayout.putConstraint(SpringLayout.WEST, logoImage, 85, SpringLayout.WEST, this);
 			}
 
+		public LoadMenu getLoadMenu()
+		{
+			return loadMenuPanel;
+		}
 		public MainMenu getMainMenuPanel()
 			{
 				return mainMenuPanel;
