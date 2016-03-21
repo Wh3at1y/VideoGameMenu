@@ -21,22 +21,8 @@ public class GameController
 				new JFXPanel();
 				baseFrame = new GameFrame(this);
 				buttonController = new ButtonController(this);
-				playSound = new MusicController();
+				playSound = new MusicController(this);
 				playSound.menuSong();
-			}
-
-		public void musicStatus(boolean isPlaying)
-			{
-				if (isPlaying)
-					{
-						playSound.getMainMenuPlayer().play();
-						getOptionsPanel().getToggleMusicLabel().setText("Toggle Music : On");
-					}
-				else
-					{
-						playSound.getMainMenuPlayer().pause();
-						getOptionsPanel().getToggleMusicLabel().setText("Toggle Music : Off");
-					}
 			}
 
 		public void buildButton(JLabel button)
@@ -58,12 +44,11 @@ public class GameController
 					{
 						public void mouseClicked(MouseEvent clicked)
 							{
-
+								
 							}
 
 						public void mousePressed(MouseEvent e)
 							{
-								playSound.buttonClick();
 								if (button == getMainMenuPanel().getOptionsLabel() || button == getOptionsPanel().getBackLabel()) // Options and Back Button
 									buttonController.optionsButtonOperation(); // Load the options operations
 								if (button == getMainMenuPanel().getStartLabel()) // Start Button
@@ -73,7 +58,9 @@ public class GameController
 								if (button == getMainMenuPanel().getExitLabel()) // Exit Button
 									buttonController.exitButtonOperation(); // Load the exit button operations
 								if (button == getOptionsPanel().getToggleMusicLabel())
-									buttonController.toggleMusicOperation();
+									buttonController.toggleMenuMusic();
+								//if(button == getOptionsPanel().getToggleClicksLabel())
+								
 								
 								/**
 								 * ------------- Options Menu Listeners
@@ -87,7 +74,6 @@ public class GameController
 
 						public void mouseEntered(MouseEvent e)
 							{
-								playSound.buttonHover();
 								button.setEnabled(true);
 							}
 
@@ -110,4 +96,9 @@ public class GameController
 			{
 				return baseFrame.getPanel().getOptionsMenuPanel();
 			}
+		
+		public MusicController getMusicController()
+		{
+			return playSound;
+		}
 	}

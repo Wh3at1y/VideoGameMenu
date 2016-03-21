@@ -7,9 +7,29 @@ import javafx.scene.media.MediaPlayer;
 
 public class MusicController
 	{
+		private GameController baseController;
 		private MediaPlayer mainMenuPlayer;
 		private MediaPlayer buttonClickPlayer;
 		private MediaPlayer buttonHoverPlayer;
+		
+		public MusicController(GameController baseController)
+		{
+			this.baseController = baseController;
+		}
+		
+		public void menuMusicStatus(boolean isPlaying)
+			{
+				if (isPlaying)
+					{
+						mainMenuPlayer.play();
+						baseController.getOptionsPanel().getToggleMusicLabel().setText("Toggle Music : On");
+					}
+				else
+					{
+						mainMenuPlayer.pause();
+						baseController.getOptionsPanel().getToggleMusicLabel().setText("Toggle Music : Off");
+					}
+			}
 		
 		public void menuSong()
 			{
@@ -34,9 +54,8 @@ public class MusicController
 				Media media = new Media(resource.toString());
 				buttonHoverPlayer = new MediaPlayer(media);
 				buttonHoverPlayer.setVolume(.2);
-				buttonHoverPlayer.play();
 			}
-
+		
 		public MediaPlayer getButtonClickPlayer()
 			{
 				return buttonClickPlayer;

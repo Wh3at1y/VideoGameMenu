@@ -4,13 +4,14 @@ public class ButtonController
 	{
 		private GameController baseController;
 		private boolean isMainMenuShowing;
-		private boolean isMusicPlaying;
+		private boolean isMenuSongPlaying;
+		private boolean isButtonClicksOn;
 
 		public ButtonController(GameController baseController)
 			{
 				this.baseController = baseController;
 				this.isMainMenuShowing = true;
-				this.isMusicPlaying = true;
+				this.isButtonClicksOn = true;
 			}
 
 		public void startButtonOperation()
@@ -39,17 +40,17 @@ public class ButtonController
 					}
 			}
 		
-		public void toggleMusicOperation()
+		public void toggleMenuMusic()
 		{
-			if(isMusicPlaying)
+			if(isMenuSongPlaying)
 				{
-					baseController.musicStatus(false);
-					isMusicPlaying = false;
+					baseController.getMusicController().menuMusicStatus(false);
+					isMenuSongPlaying = false;
 				}
 			else
 				{
-					baseController.musicStatus(true);
-					isMusicPlaying = true;
+					baseController.getMusicController().menuMusicStatus(true);
+					isMenuSongPlaying = true;
 				}
 		}
 		
