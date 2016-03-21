@@ -11,6 +11,7 @@ public class ButtonController
 			{
 				this.baseController = baseController;
 				this.isMainMenuShowing = true;
+				this.isMenuSongPlaying = true;
 				this.isButtonClicksOn = true;
 			}
 
@@ -39,21 +40,21 @@ public class ButtonController
 						isMainMenuShowing = true;
 					}
 			}
-		
+
 		public void toggleMenuMusic()
-		{
-			if(isMenuSongPlaying)
-				{
-					baseController.getMusicController().menuMusicStatus(false);
-					isMenuSongPlaying = false;
-				}
-			else
-				{
-					baseController.getMusicController().menuMusicStatus(true);
-					isMenuSongPlaying = true;
-				}
-		}
-		
+			{
+				if (isMenuSongPlaying)
+					{
+						baseController.getMusicController().menuMusicStatus(false);
+						isMenuSongPlaying = false;
+					}
+				else
+					{
+						baseController.getMusicController().menuMusicStatus(true);
+						isMenuSongPlaying = true;
+					}
+			}
+
 		public void exitButtonOperation()
 			{
 				System.exit(0);

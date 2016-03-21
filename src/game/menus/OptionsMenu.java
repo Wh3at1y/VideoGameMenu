@@ -35,7 +35,7 @@ public class OptionsMenu extends JPanel
 				add(toggleClicksLabel);
 				add(backLabel);
 			}
-		
+
 		private void buildWindow()
 			{
 				baseLayout.putConstraint(SpringLayout.WEST, backLabel, 150, SpringLayout.WEST, this);

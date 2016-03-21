@@ -44,11 +44,13 @@ public class GameController
 					{
 						public void mouseClicked(MouseEvent clicked)
 							{
-								
+
 							}
 
 						public void mousePressed(MouseEvent e)
 							{
+								if (playSound.getButtonClicks() == true)
+									playSound.buttonClick();
 								if (button == getMainMenuPanel().getOptionsLabel() || button == getOptionsPanel().getBackLabel()) // Options and Back Button
 									buttonController.optionsButtonOperation(); // Load the options operations
 								if (button == getMainMenuPanel().getStartLabel()) // Start Button
@@ -59,9 +61,9 @@ public class GameController
 									buttonController.exitButtonOperation(); // Load the exit button operations
 								if (button == getOptionsPanel().getToggleMusicLabel())
 									buttonController.toggleMenuMusic();
-								//if(button == getOptionsPanel().getToggleClicksLabel())
-								
-								
+								if (button == getOptionsPanel().getToggleClicksLabel())
+									playSound.buttonClickStatus();
+
 								/**
 								 * ------------- Options Menu Listeners
 								 */
@@ -74,6 +76,8 @@ public class GameController
 
 						public void mouseEntered(MouseEvent e)
 							{
+								if (playSound.getButtonClicks() == true)
+									playSound.buttonHover();
 								button.setEnabled(true);
 							}
 
@@ -96,9 +100,9 @@ public class GameController
 			{
 				return baseFrame.getPanel().getOptionsMenuPanel();
 			}
-		
+
 		public MusicController getMusicController()
-		{
-			return playSound;
-		}
+			{
+				return playSound;
+			}
 	}
