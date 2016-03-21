@@ -52,7 +52,7 @@ public class MusicController
 
 		public void menuSong()
 			{
-				URL resource = getClass().getResource("/resources/song.wav");
+				URL resource = getClass().getResource("/resources/menuMusic.mp3");
 				Media media = new Media(resource.toString());
 				mainMenuPlayer = new MediaPlayer(media);
 				mainMenuPlayer.play();
@@ -78,6 +78,6 @@ public class MusicController
 
 		public boolean getButtonClicks()
 			{
-				return this.isButtonClicksOn;
+				return isButtonClicksOn;
 			}
 	}

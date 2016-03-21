@@ -21,7 +21,14 @@ public class GameController
 				playSound = new MusicController(this);
 				playSound.menuSong();	//Starts the MainMenu song
 			}
-
+		
+		public void buildLabelOnly(JLabel button)
+		{
+			button.setFont(new Font("Microsoft Yi Baiti", Font.PLAIN, 35));
+			button.setEnabled(false);
+			button.setForeground(Color.WHITE);
+		}
+		
 		public void buildButton(JLabel button)
 			{
 				button.setFont(new Font("Microsoft Yi Baiti", Font.PLAIN, 35));
@@ -46,22 +53,30 @@ public class GameController
 
 						public void mousePressed(MouseEvent e)
 							{
+								/**
+								 * ------------- Main Menu Listeners
+								 */
 								if (playSound.getButtonClicks() == true)	//Checks the toggle clicks status
 									playSound.buttonClick();	//Plays the sound
-								if (button == getMainMenuPanel().getOptionsLabel() || button == getOptionsPanel().getBackLabel()) // Options and Back Button
+								if (button == getMainMenuPanel().getOptionsLabel() || button == getOptionsPanel().getBackLabel() || button == getLoadPanel().getBackLabel() || button == getNewGamePanel().getBackLabel()) // Options and Back Button
 									buttonController.optionsButtonOperation(); // Load the options operations
 								if (button == getMainMenuPanel().getStartLabel()) // Start Button
-									buttonController.startButtonOperation(); // Load start button operations
+									buttonController.newGameButtonOperation(); // Load start button operations
 								if (button == getMainMenuPanel().getLoadLabel()) // Load Button
 									buttonController.loadButtonOperation(); // Load the load game operations
 								if (button == getMainMenuPanel().getExitLabel()) // Exit Button
 									buttonController.exitButtonOperation(); // Load the exit button operations
 
 								/**
+								 * ------------- New Game Listeners
+								 */
+								
+								/**
 								 * ------------- Load Menu Listeners
 								 */
-								if(button == getMainMenuPanel().getLoadLabel())
-									baseFrame.getPanel().getLoadMenu().showFileChooser();
+								if(button == getLoadPanel().getChooseProfileLabel())
+									getLoadPanel().showFileChooser();
+								
 								/**
 								 * ------------- Options Menu Listeners
 								 */
@@ -98,10 +113,19 @@ public class GameController
 				return baseFrame.getPanel().getMainMenuPanel();
 			}
 
+		public NewGameMenu getNewGamePanel()
+		{
+			return baseFrame.getPanel().getNewGamePanel();
+		}
 		public OptionsMenu getOptionsPanel()
 			{
 				return baseFrame.getPanel().getOptionsMenuPanel();
 			}
+		
+		public LoadMenu getLoadPanel()
+		{
+			return baseFrame.getPanel().getLoadMenu();
+		}
 
 		public MusicController getMusicController()
 			{

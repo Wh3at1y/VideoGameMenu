@@ -11,16 +11,39 @@ public class ButtonController
 				this.isMainMenuShowing = true;
 			}
 
-		public void startButtonOperation()
+		public void newGameButtonOperation()
 			{
-
+				if (isMainMenuShowing)
+					{
+						baseController.getMainMenuPanel().setVisible(false);
+						baseController.getNewGamePanel().setVisible(true);
+						isMainMenuShowing = false;
+					}
+				else
+					{
+						baseController.getMainMenuPanel().setVisible(true);
+						baseController.getNewGamePanel().setVisible(false);
+						isMainMenuShowing = true;
+					}
 			}
 
 		public void loadButtonOperation()
 			{
-
+				baseController.getLoadPanel().showFileChooser();
+				if (isMainMenuShowing)
+					{
+						baseController.getMainMenuPanel().setVisible(false);
+						baseController.getLoadPanel().setVisible(true);
+						isMainMenuShowing = false;
+					}
+				else
+					{
+						baseController.getMainMenuPanel().setVisible(true);
+						baseController.getLoadPanel().setVisible(false);
+						isMainMenuShowing = true;
+					}
 			}
-
+		
 		public void optionsButtonOperation()
 			{
 				if (isMainMenuShowing)
@@ -33,6 +56,8 @@ public class ButtonController
 					{
 						baseController.getMainMenuPanel().setVisible(true);
 						baseController.getOptionsPanel().setVisible(false);
+						baseController.getLoadPanel().setVisible(false);
+						baseController.getNewGamePanel().setVisible(false);
 						isMainMenuShowing = true;
 					}
 			}

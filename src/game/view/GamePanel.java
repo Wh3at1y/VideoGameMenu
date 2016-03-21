@@ -9,6 +9,7 @@ public class GamePanel extends JPanel
 	{
 		private SpringLayout baseLayout;
 		private MainMenu mainMenuPanel;
+		private NewGameMenu newGamePanel;
 		private LoadMenu loadMenuPanel;
 		private OptionsMenu optionsMenuPanel;
 		private JLabel logoImage;
@@ -20,10 +21,11 @@ public class GamePanel extends JPanel
 				mainMenuPanel = new MainMenu(baseController);
 				loadMenuPanel = new LoadMenu(baseController);
 				optionsMenuPanel = new OptionsMenu(baseController);
-				
+				newGamePanel = new NewGameMenu(baseController);
+
 				logoImage = new JLabel(new ImageIcon(GamePanel.class.getResource("/resources/logo.png")));
 				backgroundImage = new JLabel();
-				
+
 				buildPanel();
 				buildWindow();
 			}
@@ -33,6 +35,8 @@ public class GamePanel extends JPanel
 				setLayout(baseLayout);
 				add(mainMenuPanel);
 				add(optionsMenuPanel);
+				add(loadMenuPanel);
+				add(newGamePanel);
 				add(logoImage);
 				add(backgroundImage);
 			}
@@ -62,20 +66,34 @@ public class GamePanel extends JPanel
 				baseLayout.putConstraint(SpringLayout.EAST, optionsMenuPanel, 0, SpringLayout.EAST, this);
 				baseLayout.putConstraint(SpringLayout.NORTH, logoImage, 40, SpringLayout.NORTH, this);
 				baseLayout.putConstraint(SpringLayout.WEST, logoImage, 85, SpringLayout.WEST, this);
+				baseLayout.putConstraint(SpringLayout.NORTH, loadMenuPanel, 0, SpringLayout.NORTH, this);
+				baseLayout.putConstraint(SpringLayout.WEST, loadMenuPanel, 0, SpringLayout.WEST, this);
+				baseLayout.putConstraint(SpringLayout.SOUTH, loadMenuPanel, 0, SpringLayout.SOUTH, this);
+				baseLayout.putConstraint(SpringLayout.EAST, loadMenuPanel, 0, SpringLayout.EAST, this);
+				baseLayout.putConstraint(SpringLayout.NORTH, newGamePanel, 0, SpringLayout.NORTH, this);
+				baseLayout.putConstraint(SpringLayout.WEST, newGamePanel, 0, SpringLayout.WEST, this);
+				baseLayout.putConstraint(SpringLayout.SOUTH, newGamePanel, 0, SpringLayout.SOUTH, this);
+				baseLayout.putConstraint(SpringLayout.EAST, newGamePanel, 0, SpringLayout.EAST, this);
+			}
+
+		public NewGameMenu getNewGamePanel()
+			{
+				return newGamePanel;
 			}
 
 		public LoadMenu getLoadMenu()
-		{
-			return loadMenuPanel;
-		}
+			{
+				return loadMenuPanel;
+			}
+
 		public MainMenu getMainMenuPanel()
 			{
 				return mainMenuPanel;
 			}
-		
+
 		public OptionsMenu getOptionsMenuPanel()
-		{
-			return optionsMenuPanel;
-		}
+			{
+				return optionsMenuPanel;
+			}
 
 	}
