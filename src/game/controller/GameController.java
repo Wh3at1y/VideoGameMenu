@@ -12,6 +12,7 @@ public class GameController
 		private GameFrame baseFrame;
 		private ButtonController buttonController;
 		private MusicController playSound;
+		private FileController fileController;
 
 		public GameController()
 			{
@@ -19,6 +20,7 @@ public class GameController
 				baseFrame = new GameFrame(this);
 				buttonController = new ButtonController(this);
 				playSound = new MusicController(this);
+				fileController = new FileController(this);
 				playSound.menuSong();	//Starts the MainMenu song
 			}
 		
@@ -62,20 +64,24 @@ public class GameController
 									buttonController.optionsButtonOperation(); // Load the options operations
 								if (button == getMainMenuPanel().getStartLabel()) // Start Button
 									buttonController.newGameButtonOperation(); // Load start button operations
-								if (button == getMainMenuPanel().getLoadLabel()) // Load Button
-									buttonController.loadButtonOperation(); // Load the load game operations
+								if (button == getMainMenuPanel().getLoadLabel())
+									{	// Load Button
+									buttonController.loadButtonOperation();
+									fileController.loadProfile();
+									}// Load the load game operations
 								if (button == getMainMenuPanel().getExitLabel()) // Exit Button
 									buttonController.exitButtonOperation(); // Load the exit button operations
 
 								/**
 								 * ------------- New Game Listeners
 								 */
-								
+								if(button == getNewGamePanel().getStartGameLabel())
+									fileController.makeFile(getNewGamePanel().getUserName().getText());
 								/**
 								 * ------------- Load Menu Listeners
 								 */
 								if(button == getLoadPanel().getChooseProfileLabel())
-									getLoadPanel().showFileChooser();
+									fileController.loadProfile();
 								
 								/**
 								 * ------------- Options Menu Listeners

@@ -63,9 +63,9 @@ public class LoadMenu extends JPanel
 				return chooseProfileLabel;
 			}
 
-		public void showFileChooser()
+		public JFileChooser getFileChooser()
 		{
-			openFileChooser.showOpenDialog(null);
+			return openFileChooser;
 		}
 
 		public JLabel getUserNameLabel()

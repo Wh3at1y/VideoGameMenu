@@ -51,6 +51,14 @@ public class NewGameMenu extends JPanel
 				baseLayout.putConstraint(SpringLayout.NORTH, startGameLabel, 50, SpringLayout.NORTH, userNameLabel);
 				baseLayout.putConstraint(SpringLayout.WEST, startGameLabel, 150, SpringLayout.WEST, this);
 			}
+		public JTextField getUserName()
+		{
+			return userNameField;
+		}
+		public JLabel getStartGameLabel()
+		{
+			return startGameLabel;
+		}
 		
 		public JLabel getBackLabel()
 		{

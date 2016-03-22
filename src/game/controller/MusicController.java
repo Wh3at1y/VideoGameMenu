@@ -52,7 +52,7 @@ public class MusicController
 
 		public void menuSong()
 			{
-				URL resource = getClass().getResource("/resources/menuMusic.mp3");
+				URL resource = getClass().getResource("/resources/song.wav");
 				Media media = new Media(resource.toString());
 				mainMenuPlayer = new MediaPlayer(media);
 				mainMenuPlayer.play();
