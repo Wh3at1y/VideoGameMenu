@@ -18,11 +18,11 @@ public class NewGameMenu extends JPanel
 				userNameLabel = new JLabel("Enter UserName : ");
 				startGameLabel = new JLabel("Start Game");
 				backLabel = new JLabel("Back");
-		
+
 				baseController.buildLabelOnly(userNameLabel);
 				baseController.buildButton(startGameLabel);
 				baseController.buildButton(backLabel);
-				
+
 				buildPanel();
 				buildWindow();
 			}
@@ -51,17 +51,19 @@ public class NewGameMenu extends JPanel
 				baseLayout.putConstraint(SpringLayout.NORTH, startGameLabel, 50, SpringLayout.NORTH, userNameLabel);
 				baseLayout.putConstraint(SpringLayout.WEST, startGameLabel, 150, SpringLayout.WEST, this);
 			}
+
 		public JTextField getUserName()
-		{
-			return userNameField;
-		}
+			{
+				return userNameField;
+			}
+
 		public JLabel getStartGameLabel()
-		{
-			return startGameLabel;
-		}
-		
+			{
+				return startGameLabel;
+			}
+
 		public JLabel getBackLabel()
-		{
-			return backLabel;
-		}
+			{
+				return backLabel;
+			}
 	}

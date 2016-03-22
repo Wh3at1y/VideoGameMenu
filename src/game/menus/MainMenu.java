@@ -1,7 +1,6 @@
 package game.menus;
 
 import game.controller.GameController;
-
 import javax.swing.*;
 
 public class MainMenu extends JPanel
@@ -15,7 +14,7 @@ public class MainMenu extends JPanel
 		public MainMenu(GameController baseController)
 			{
 				baseLayout = new SpringLayout();
-				
+
 				startLabel = new JLabel("New Game");
 				loadLabel = new JLabel("Load Profile");
 				optionsLabel = new JLabel("Options");
@@ -72,5 +71,5 @@ public class MainMenu extends JPanel
 			{
 				return exitLabel;
 			}
-		
+
 	}

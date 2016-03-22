@@ -1,11 +1,5 @@
 package game.controller;
 
-import java.io.BufferedReader;
-import java.io.File;
-import java.io.FileNotFoundException;
-import java.io.FileReader;
-import java.io.IOException;
-
 public class ButtonController
 	{
 		private GameController baseController;
@@ -16,7 +10,6 @@ public class ButtonController
 				this.baseController = baseController;
 				this.isMainMenuShowing = true;
 
-				
 			}
 
 		public void newGameButtonOperation()
